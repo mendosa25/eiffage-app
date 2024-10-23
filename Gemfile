@@ -1,5 +1,10 @@
 source "https://rubygems.org"
 
+gem "simple_calendar"
+gem "simple_form"
+gem "faker"
+gem "devise"
+
 ruby "3.1.2"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"

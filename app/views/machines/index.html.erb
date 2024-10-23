@@ -1,0 +1,16 @@
+<%@machines.each do |machine| %>
+  <div>Numéro d'identification : <%= machine.identification %></div>
+  <div>
+    <div>Niveau de combustible : <%= machine.fuel_level %>%</div>
+    <div>Type d'engin moteur : <%= machine.type_machine %></div>
+    <% if machine.status? == true %>
+      <div>Restrictions maintenance : Disponible</div>
+    <% else %>
+      <div>
+        Indisponible
+      </div>
+    <% end %>
+    <div>Préparation courante : <%= machine.checked? %></div>
+  </div>
+<% end %>
+<%= link_to "Page d'accueil", root_path %>
