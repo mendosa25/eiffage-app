@@ -10,13 +10,39 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_10_23_120459) do
-  create_table "drivers", force: :cascade do |t|
+ActiveRecord::Schema[7.1].define(version: 2024_10_23_132936) do
+  create_table "machine_rapports", force: :cascade do |t|
+    t.date "date"
+    t.integer "oil_level"
+    t.integer "water_level"
+    t.integer "sand_level"
+    t.string "review"
+    t.date "date_bcc"
+    t.date "date_extincteur"
+    t.integer "machine_id", null: false
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["machine_id"], name: "index_machine_rapports_on_machine_id"
+    t.index ["user_id"], name: "index_machine_rapports_on_user_id"
+  end
+
+  create_table "machines", force: :cascade do |t|
+    t.integer "identification"
+    t.integer "model"
+    t.string "weight"
+    t.string "size"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "users", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
     t.string "matricule"
     t.string "phone"
     t.string "adress"
+    t.string "role", default: "driver"
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -24,16 +50,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_10_23_120459) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["email"], name: "index_drivers_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_drivers_on_reset_password_token", unique: true
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  create_table "machines", force: :cascade do |t|
-    t.integer "identification"
-    t.string "weight"
-    t.string "size"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
+  add_foreign_key "machine_rapports", "machines"
+  add_foreign_key "machine_rapports", "users"
 end

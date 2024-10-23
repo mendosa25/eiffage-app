@@ -1,0 +1,25 @@
+Machine/show
+<div class="container flex">
+  <% @machine_rapports.each do |rapport| %>
+    <div class="w-2/6 border border-gray-300 text-center">
+      <p>
+        Préparation courante du <%= rapport.date %>
+      </p>
+      <p>
+        Réalisée par <%= rapport.user.first_name %> <%= rapport.user.last_name %>
+      </p>
+      <p>
+        Niveau Huile : <%= rapport.oil_level %>%,
+      </p>
+      <p>
+        Niveau des sablières : <%= rapport.sand_level %>%,
+      </p>
+      <p>
+        Date de la Barre coupe-circuit : <%= rapport.date_bcc %>
+      </p>
+      <p>
+        <%= rapport.review %>
+      </p>
+    </div>
+  </div>
+<% end %>

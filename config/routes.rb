@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
-  devise_for :drivers
-  get 'machines/index'
-  get 'machines/view'
-  get 'pages/home'
+  root to: "pages#home"
+  devise_for :users
+  resources :machines, only: [:index, :show]
+  resources :machines_rapports
+  
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -10,7 +11,5 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   # Defines the root path route ("/")
-  root to: "pages#home"
-  resources :machines
   # root "posts#index"
 end
